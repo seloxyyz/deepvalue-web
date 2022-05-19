@@ -1,0 +1,18 @@
+<div class="main">
+
+    <div class="stock-row">
+        <div class="stock-name-col">
+            <div class="stock-row">
+                <div class="stock-name-col">
+                    <mat-selection-list *ngFor="let stock of stocks | async" [multiple]="false">
+                        <mat-list-option id="list-item" [routerLink]="['/stock/', stock.id]">
+                            {{stock.name}}
+                            <p value="{{stock.ticker}}" id="ticker">{{stock.ticker}}</p>
+                        </mat-list-option>
+                    </mat-selection-list>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

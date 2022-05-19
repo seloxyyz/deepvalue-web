@@ -1,0 +1,31 @@
+
+$accent: #0ac18e;
+$accent-hover: #0b976f;
+$white: #fff;
+$bg-dark: #181818;
+$bg-dark-bt: #282828;
+$bg-dark-accent: #202020;
+
+.main {
+    display: flex;
+    border: 1px solid #000;
+    flex-direction: column;
+    margin: 2em;
+    padding: 1em;
+    background-color: $bg-dark-bt;
+}
+
+#list-item {
+    max-width: 400px;
+    min-width: 300px;
+}
+
+.stock-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#ticker {
+    color: rgb(94, 94, 94);
+}

@@ -1,0 +1,32 @@
+
+.main {
+    display: flex;
+    flex-direction: row;
+}
+
+.col-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.details {
+    display: flex;
+    flex-direction: row;
+}
+
+.stock-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.col-right {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 720px) {
+    .main {
+        display: flex;
+        flex-direction: column;
+    }
+}

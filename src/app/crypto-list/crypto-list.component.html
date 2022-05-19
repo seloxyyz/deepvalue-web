@@ -1,0 +1,14 @@
+<div class="main">
+
+    <div class="stock-row">
+        <div class="stock-name-col">
+            <mat-selection-list *ngFor="let crypto of cryptos | async" [multiple]="false">
+                <mat-list-option id="list-item" [routerLink]="['/crypto/', crypto.id]">
+                    <p>{{crypto.name}}</p>
+                    <p>{{crypto.ticker}}</p>
+                </mat-list-option>
+            </mat-selection-list>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,69 @@
+<mat-sidenav-container class="sidebar-container" (backdropClick)="close()">
+  <mat-sidenav #sidenav (keydown.escape)="close()" disableClose>
+    <p><button mat-button (click)="close()">
+        <mat-icon>close</mat-icon>
+      </button></p>
+
+    <div class="sidebar-content">
+      <mat-selection-list [multiple]="false">
+        <mat-list-option (click)="close()" routerLink="/">
+          <mat-icon mat-list-icon>dashboard</mat-icon>
+          <div mat-line>Dashboard</div>
+        </mat-list-option>
+
+        <!-- <mat-list-option (click)="close()" routerLink="/stocks">
+          <mat-icon mat-list-icon>trending_up</mat-icon>
+          <div mat-line>Stocks</div>
+        </mat-list-option> -->
+
+        <mat-list-option (click)="close()" routerLink="/cryptos">
+          <mat-icon mat-list-icon>join_inner</mat-icon>
+          <div mat-line>Crypto</div>
+        </mat-list-option>
+        <mat-list-option *ngIf="authService.user$ | async as user; else loginSidebar" (click)="authService.signOut()"
+          (click)="close()">
+          <mat-icon mat-list-icon>login</mat-icon>
+          <div mat-line>Sign out</div>
+        </mat-list-option>
+
+        <ng-template #loginSidebar>
+          <mat-list-option routerLink="/login" (click)="close()">
+            <mat-icon mat-list-icon>logout</mat-icon>
+            <div mat-line>Sign in</div>
+          </mat-list-option>
+        </ng-template>
+      </mat-selection-list>
+    </div>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <div class="topbar-content">
+      <div style="display: flex; flex-direction: row;">
+        <button mat-button (click)="sidenav.open()">
+          <mat-icon>menu</mat-icon>
+        </button>
+
+        <img routerLink="/" width="150px" src="assets/logos/logo1.png">
+      </div>
+
+      <div>
+        <button mat-raised-button color="accent" routerLink="/pro" *ngIf="!(stocksService.doesNotHaveSubs$ | async)">
+          30-Day free trial
+        </button>
+
+        <button mat-stroked-button color="accent" routerLink="/pro" *ngIf="(stocksService.doesNotHaveSubs$ | async)">
+          Manage Sub
+        </button>
+      </div>
+    </div>
+
+    <div class="content" role="main">
+
+
+      <router-outlet></router-outlet>
+
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

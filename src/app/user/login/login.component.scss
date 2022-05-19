@@ -1,0 +1,17 @@
+$accent: #0ac18e;
+$accent-hover: #0b976f;
+$white: #fff;
+$bg-dark: #181818;
+$bg-dark-bt: #282828;
+$bg-dark-accent: #202020;
+
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login #icons {
+    margin-right: 0.5em;
+}

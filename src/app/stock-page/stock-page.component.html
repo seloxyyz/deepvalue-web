@@ -1,0 +1,111 @@
+<div id="loading">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div class="main" id="main">
+    <div class="stock-info">
+        <div>
+            <div class="roww">
+                <div *ngIf="stock$ | async as stock;" style="display: flex; flex-direction: row;">
+                    <p><b>{{stock.name}}</b></p>
+                    <p id="ticker">{{stock.ticker}}</p>
+                </div>
+
+                <div style="display: flex; flex-direction: row;">
+                    <a><b>Website</b></a>,
+                    <a><b>SEC</b></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="columns">
+        <div class="col-1">
+            <div class="flex" style="width: 500px;">
+                <!-- <div class="price-chart">
+                    <h3>PRICE CHART</h3>
+                    <div style="display: block;">
+                        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels"
+                            [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend"
+                            [chartType]="barChartType">
+                        </canvas>
+                    </div>
+                </div> -->
+
+                <div class="earnings-chart">
+                    <h3>EARNINGS</h3>
+                    <div style="display: block;">
+                        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels"
+                            [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend"
+                            [chartType]="barChartType">
+                        </canvas>
+                    </div>
+                </div>
+
+                <div class="cashflow">
+                    <h3>CASHFLOW</h3>
+                    <div style="display: block;">
+                        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels"
+                            [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend"
+                            [chartType]="barChartType">
+                        </canvas>
+                    </div>
+                </div>
+
+                <div class="expenses">
+                    <h3>EXPENSES</h3>
+                    <div style="display: block;">
+                        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels"
+                            [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend"
+                            [chartType]="barChartType">
+                        </canvas>
+                    </div>
+                </div>
+
+                <div class="rev-segments">
+                    <h3>REVENUE SEGMENTS</h3>
+                    <div style="display: block;">
+                        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels"
+                            [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend"
+                            [chartType]="barChartType">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-2">
+            <div class="news">
+                <h3>PRESS</h3>
+            </div>
+            <ng-container *ngFor="let stonk of stonks | async">
+                <p>Price: ${{stonk.price | json}} - {{stonk.changes | json}}% </p>
+                <p>Mcap: ${{stonk.mktCap | json}}</p>
+                <p>DCF: ${{stonk.dcf | json}}</p>
+                <p>Recent Earnings</p>
+            </ng-container>
+
+            <ng-container *ngFor="let stonksQuote of stonksQuotes | async">
+                <p>EPS: ${{stonksQuote.eps | json}} </p>
+                <p>Upcoming Earnings: {{stonksQuote.earningsAnnouncement | json}}</p>
+            </ng-container>
+
+            <ng-container *ngFor="let stonkIncome of stonksIncome | async">
+                <p>EBITDA: ${{stonkIncome.ebitda | json}} </p>
+            </ng-container>
+
+            <ng-container *ngFor="let stonkBalanceSheet of stonksBalanceSheet | async">
+                <p>Total Assets: ${{stonkBalanceSheet.totalAssets | json}} </p>
+            </ng-container>
+        </div>
+
+    </div>
+
+    <div class="other">
+        <a (click)="DownloadSECFinancials()">Download</a> SEC Financial Statements, add it to your wishlist to
+        receive
+        notifications
+    </div>
+
+</div>

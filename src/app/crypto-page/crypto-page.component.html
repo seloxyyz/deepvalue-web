@@ -1,0 +1,81 @@
+<div id="loading">
+    <mat-spinner color="accent"></mat-spinner>
+</div>
+
+<div class="main" id="main">
+    <div class="stock-info">
+        <div>
+            <div class="row">
+                <div *ngIf="crypto$ | async as crypto;" style="display: flex; flex-direction: row;">
+                    <mat-card-title>{{crypto.name}}</mat-card-title>
+                    <mat-card-subtitle>{{crypto.ticker}}</mat-card-subtitle>
+                </div>
+                <ng-container *ngFor="let cryptoProfile of cryptoProfiles | async">
+                    <mat-card-title>
+                        <p>${{cryptoProfile.current_price | json | number : '1.2-2'}}</p>
+                    </mat-card-title>
+                </ng-container>
+            </div>
+
+            <div class="row" *ngFor="let cryptoProfile of cryptoProfiles | async">
+                <mat-card-subtitle>Market-Cap: ${{cryptoProfile.market_cap | json | number : '1.0-0'}}
+                </mat-card-subtitle>
+                <mat-card-subtitle>Market-Cap Rank: {{cryptoProfile.market_cap_rank | json}}</mat-card-subtitle>
+            </div>
+        </div>
+
+        <div *ngIf="crypto$ | async as crypto;">
+            <a target="_blank" rel="noopener" href="{{crypto.website}}">
+                <mat-icon>public</mat-icon>
+            </a>
+        </div>
+
+    </div>
+    <!-- <ng-container *ngFor="let cryptoChart of cryptoCharts | async">
+        <p>{{cryptoChart.prices}}</p>
+
+    </ng-container> -->
+
+    <div class="grid">
+
+        <div class="col-1">
+            
+        </div>
+
+        <div class="col-2">
+            <div class="col-2-cont">
+                <div *ngFor="let cryptoProfile of cryptoProfiles | async">
+                    <mat-card-subtitle>Total Supply</mat-card-subtitle>
+                    <mat-card-title>{{cryptoProfile.total_supply | json | number : '1.0-0'}}</mat-card-title>
+                    <mat-divider></mat-divider>
+
+                    <mat-card-subtitle>Circulating Supply</mat-card-subtitle>
+                    <mat-card-title>{{cryptoProfile.circulating_supply | json | number : '1.0-0'}}</mat-card-title>
+                    <mat-divider></mat-divider>
+
+                    <mat-card-subtitle>Volume (24h)</mat-card-subtitle>
+                    <mat-card-title>{{cryptoProfile.circulating_supply | json | number : '1.0-0'}}</mat-card-title>
+                    <mat-divider></mat-divider>
+
+                    <mat-card-subtitle>All Time High</mat-card-subtitle>
+                    <mat-card-title>${{cryptoProfile.ath | json | number : '1.2-2'}}</mat-card-title>
+
+                </div>
+                <div *ngIf="crypto$ | async as crypto;">
+                    <mat-divider></mat-divider>
+                    <mat-card-subtitle>Wallets</mat-card-subtitle>
+                    <mat-card-title><a href="{{crypto.wallets}}">Wallet</a></mat-card-title>
+                    <mat-divider></mat-divider>
+
+                    <mat-card-subtitle>Other Websites</mat-card-subtitle>
+                    <mat-card-title><a href="{{crypto.explorer}}">Explorer</a></mat-card-title>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

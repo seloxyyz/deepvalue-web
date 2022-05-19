@@ -1,0 +1,28 @@
+<div class="main" *ngIf="authService.user$ | async as user; else signin">
+
+    <mat-card class="example-card"
+        *ngIf="(stocksService.currentUser$ | async) && !(stocksService.doesNotHaveSubs$ | async)">
+        <mat-card-title>Deepvalue Pro</mat-card-title>
+        <mat-card-subtitle>Start your 30-day free trial, then $6,90/month</mat-card-subtitle>
+        <mat-card-content>
+            <p>
+                This is a test subscription, after clicking on "Subscribe",
+                you will be redirected to Stripe, there type 4242... ongoing
+                as your credit card credidentals, and your "Subscription"
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="accent" id="basic-plan-btn" (click)="Checkout()">Start free trial</button>
+        </mat-card-actions>
+    </mat-card>
+
+    <div *ngIf="(stocksService.currentUser$ | async) && (stocksService.doesNotHaveSubs$ | async)">
+        <button mat-stroked-button color="primaty" (click)="CustomerPortal()">Manage Subscription</button>
+    </div>
+
+
+</div>
+
+<ng-template #signin>
+    <app-login></app-login>
+</ng-template>
